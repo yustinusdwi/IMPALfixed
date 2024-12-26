@@ -16,25 +16,30 @@
     <style>
         .header {
             position: fixed;
-            top: 0%;
+            top: 0;
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 15px 30px;
-            background: linear-gradient(90deg, #4b6cb7, #182848); 
+            background: linear-gradient(90deg, #4b6cb7, #182848);
             color: white;
             width: 100%;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
         }
 
         .header img {
-            height: 50px;
+            height: 60px;
+            max-width: 100%; /* Menjamin gambar tetap proporsional */
         }
 
         .header h1 {
             font-size: 28px;
             color: white;
+            text-align: center;
+            flex: 1; /* Memberi ruang proporsional */
         }
+
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
@@ -46,9 +51,9 @@
             color: #fff;
             animation: fadeInBg 2s ease-out;
             background: url("<%= request.getContextPath() %>/background") no-repeat center center fixed; /* Gambar background */
-            background-size: cover; 
+            background-size: cover;
         }
-        
+
         body::before {
             content: "";
             position: absolute;
@@ -56,11 +61,11 @@
             left: 0;
             right: 0;
             bottom: 0;
-            height: 100%; 
+            height: 100%;
             min-height: 100%;
-            background: inherit; 
-            filter: blur(3px); 
-            z-index: -1; 
+            background: inherit;
+            filter: blur(3px);
+            z-index: -1;
         }
 
         .login-container {
@@ -70,7 +75,7 @@
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
             text-align: center;
             max-width: 400px;
-            width: 100%;
+            width: 90%; /* Gunakan persentase agar fleksibel */
             animation: zoomIn 1s ease-out;
         }
 
@@ -97,6 +102,7 @@
             font-size: 16px;
             border: 1px solid #ccc;
             border-radius: 8px;
+            box-sizing: border-box;
         }
 
         .btn-login {
@@ -143,8 +149,85 @@
                 opacity: 1;
             }
         }
-       
 
+        /* Responsivitas */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column; /* Header lebih fleksibel pada layar kecil */
+                align-items: center;
+                height: auto; /* Header fleksibel */
+                padding: 10px 20px;
+            }
+
+            .header img {
+                height: 50px; /* Ukuran gambar lebih kecil di layar kecil */
+            }
+
+            .header h1 {
+                font-size: 22px;
+                margin-top: 10px;
+            }
+
+            .login-container {
+                padding: 30px;
+                max-width: 350px; /* Lebar maksimal lebih kecil untuk layar sempit */
+            }
+
+            .login-container h1 {
+                font-size: 28px;
+            }
+
+            .form-group input {
+                font-size: 14px; /* Ukuran font input lebih kecil */
+                padding: 10px;
+            }
+
+            .btn-login {
+                font-size: 16px;
+                padding: 10px;
+            }
+
+            .forgot-password {
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .header {
+                padding: 10px;
+            }
+
+            .header img {
+                height: 40px;
+            }
+
+            .header h1 {
+                font-size: 20px;
+            }
+
+            .login-container {
+                padding: 20px;
+                max-width: 300px; /* Lebar maksimal lebih kecil untuk layar lebih sempit */
+            }
+
+            .login-container h1 {
+                font-size: 24px;
+            }
+
+            .form-group input {
+                font-size: 12px;
+                padding: 8px;
+            }
+
+            .btn-login {
+                font-size: 14px;
+                padding: 8px;
+            }
+
+            .forgot-password {
+                font-size: 10px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -165,9 +248,8 @@
             </div>
             <button type="submit" class="btn-login">Login</button>
         </form>
-        <a href="changePass.jsp" class="forgot-password">Lupa Password?</a>
+        <a href="changePass.jsp" class="forgot-password">Change Password?</a>
 
-        <!-- Menampilkan pesan error -->
         <% 
             String error = request.getParameter("error");
             if (error != null) {

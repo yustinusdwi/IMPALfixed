@@ -25,7 +25,7 @@ public class jdbc {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            String url = "jdbc:mysql://localhost:3306/inventorymanagement";
+            String url = "jdbc:mysql://localhost:3307/inventorymanagement";
             String user = "root";
             String password = "";
 

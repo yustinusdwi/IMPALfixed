@@ -32,7 +32,9 @@ public class inventoryServlet extends HttpServlet {
                 response.sendRedirect("LOGINpage.jsp?error=Session expired.");
                 return;
             }
-
+            
+            
+            
             // Cari role pengguna
             String role = null;
             String findRoleQuery = "SELECT role FROM pengguna WHERE username = ?";
