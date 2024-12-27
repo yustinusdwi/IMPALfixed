@@ -43,7 +43,7 @@
         }
 
         .header img {
-            height: 50px;
+            height: 70px;
         }
 
         .header h1 {

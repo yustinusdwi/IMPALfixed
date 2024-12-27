@@ -35,7 +35,7 @@
         }
 
         .header img {
-            height: 50px;
+            height: 70px;
         }
 
         .header h1 {
@@ -187,7 +187,7 @@
             <label for="address">Address:</label>
             <input type="text" id="address" name="address" required><br><br>
 
-            <label for="jenis_kelamin">Jenis Kelamin:</label>
+            <label for="jenis_kelamin">Gender:</label>
             <input type="text" id="jenis_kelamin" name="jenis_kelamin" required><br><br>
 
             <label for="no_telp">Phone Number:</label>

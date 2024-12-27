@@ -32,17 +32,24 @@
             font-family: 'Roboto', sans-serif;
             background: #f4f7fa;
             color: #333;
-            background-size: cover; 
+            background-size: cover;
+            margin: 0;
         }
 
         .header {
+            position: fixed; 
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 70px; 
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 20px;
-            background: linear-gradient(90deg, #4b6cb7, #182848); 
+            padding: 0 20px;
+            background: linear-gradient(90deg, #4b6cb7, #182848);
             color: white;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1100; 
         }
         
         .header-bg{
@@ -60,37 +67,44 @@
         }
 
         .header img {
-            height: 50px;
+            height: 70px;
         }
 
-        .header h1 {
-            font-size: 28px;
-            font-weight: 500;
+        .header h1, .header h2 {
+            text-align: center; 
+            margin: 5px 0;
         }
 
         .container {
-            margin-left: 250px;
             display: flex;
-            min-height: 80vh;
+            margin-left: 250px;
+            margin-top: 70px;
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
             padding: 20px;
-            background: #ffffff;
+            background: #f4f7fa;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 90%; 
+            max-width: 1200px; 
+            min-height: calc(100vh - 70px);
+            margin: 0 auto;
         }
 
         .sidebar {
-           position: fixed; 
-           top: 90px; 
-           left: 0;
-           height: calc(100vh - 90px); 
-           background: linear-gradient(90deg, #ffffff, #fefaf1);
-           width: 250px;
-           padding: 20px;
-           border-right: 1px solid #ddd;
-           box-shadow: 4px 0 6px rgba(0,0,0,0.1);
-           overflow-y: auto; 
-           z-index: 1000; 
-       }
+            position: fixed; 
+            top: 70px; 
+            left: 0;
+            height: calc(100vh - 70px); 
+            width: 250px; 
+            padding: 20px;
+            background: linear-gradient(90deg, #ffffff, #fefaf1); 
+            border-right: 1px solid #ddd;
+            box-shadow: 4px 0 6px rgba(0, 0, 0, 0.1);
+            overflow-y: auto; 
+            z-index: 1000; 
+        }
 
        .sidebar a {
            display: block;
@@ -108,12 +122,13 @@
        .sidebar a:hover {
            background: linear-gradient(90deg, #2c3e50, #4ca1af);
            color: white;
-           transform: scale(1.05); /* Efek zoom halus */
+           transform: scale(1.05); 
            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
        }
 
         .content {
-            flex: 1;
+            flex: 3 1 700px; 
+            width: 100%;
             padding: 30px;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -124,11 +139,23 @@
             margin-bottom: 20px;
             color: #333;
         }
+        .search-bar {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 10px;
+            justify-content: flex-start; 
+            width: 100%;
+        }
+        .search-bar form {
+            display: flex; 
+            flex-wrap: nowrap;
+            align-items: center; 
+            width: 100%; 
+        }
 
         .search-input {
-            width: 100%;
+            flex: 1; 
             padding: 12px;
-            margin-bottom: 20px;
             border-radius: 5px;
             border: 1px solid #ddd;
             font-size: 16px;
@@ -139,13 +166,30 @@
             box-shadow: 0 0 10px rgba(75, 108, 183, 0.3);
         }
 
+        .search-bar button {
+            padding: 12px 20px; 
+            border: none;
+            border-radius: 5px;
+            background-color: #4b6cb7;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .search-bar button:hover {
+            background-color: #182848;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
+            overflow-x: auto;
         }
 
-        table th, table td {
+        .table th, .table td {
             padding: 12px;
             text-align: left;
             border: 1px solid #ddd;
@@ -170,6 +214,35 @@
             border-radius: 5px;
             font-size: 16px;
         }
+        
+        @media screen and (max-width: 768px) {
+            .container {
+                padding: 10px; 
+            }
+
+            .content {
+                padding: 10px;
+            }
+
+            table {
+                font-size: 14px; 
+            }
+        }
+
+        @media screen and (max-width: 576px) {
+            .header h1, .header h2 {
+                font-size: 18px;
+            }
+
+            .search-input {
+                min-width: 150px;
+            }
+
+            table th, table td {
+                font-size: 12px;
+            }
+        }
+        
         @keyframes fadeIn {
             0% {
                 opacity: 0;
@@ -191,17 +264,23 @@
         </h2>
     </div>
     
-    <div class="container">
-        <div class="sidebar">
+ <div class="container">
+    <div class="row">
+        <div class="sidebar col-md-3">
             <a href="addItems.jsp" class="add">Add Items</a>
             <a href="kelolaStaff.jsp" class="button staff">Staff Management</a>
             <a href="printReport.jsp" class="button report">Print Report Inventory</a>
             <a href="bugReport.jsp" class="button report">Bug Report</a>
             <a href="LogoutServlet" class="button login">Logout</a>
         </div>
-        
         <div class="content">
             <h2 class="header-bg">List of Items</h2>
+            <div class="search-bar">
+                <form action="mainMenu.jsp" method="get">
+                    <input type="text" name="search" class="search-input" placeholder="item's ID..." value="<%= request.getParameter("search") != null ? request.getParameter("search") : "" %>">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </form>
+            </div>
             <table class="table table-bordered">
                 <thead class="table-primary">
                     <tr>
@@ -247,7 +326,7 @@
             </table>
         </div>
     </div>
-
+ </div>>
     <script>
         function confirmDelete() {
             const isConfirmed = confirm("Are u sure want to delete this data?");

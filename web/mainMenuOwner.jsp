@@ -19,7 +19,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Main Menu - InvenTrack</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet"> <!-- Font Modern -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet"> 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         * {
@@ -32,102 +32,106 @@
             font-family: 'Roboto', sans-serif;
             background: #f4f7fa;
             color: #333;
-            background-size: cover; 
-        }
-        
-        body::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: inherit; 
-            filter: blur(3px); 
-            z-index: -1; 
+            background-size: cover;
+            margin: 0;
         }
 
         .header {
+            position: fixed; 
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 70px; 
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 20px;
-            background: linear-gradient(90deg, #4b6cb7, #182848); 
+            padding: 0 20px;
+            background: linear-gradient(90deg, #4b6cb7, #182848);
             color: white;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1100; 
+        }
+        
+        .header-bg{
+            background: linear-gradient(90deg, #F2E8CF, #DDB892); 
+            color: #333; 
+            text-align: center; 
+            font-weight: bold;
+            font-size: 28px; 
+            padding: 15px 0; 
+            border-radius: 8px; 
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+            margin: 20px auto; 
+            width: 80%; 
+             animation: fadeIn 0.8s ease-out;
         }
 
         .header img {
-            height: 50px;
+            height: 70px;
         }
 
-        .header h1 {
-            font-size: 28px;
-            font-weight: 500;
-        }
-        .content .header {
-            position:static;
-            text-align: center;
-            background: linear-gradient(90deg, #ffffff, #f4e8dc);
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-            display: inline-block;
-            width: auto;
+        .header h1, .header h2 {
+            text-align: center; 
+            margin: 5px 0;
         }
 
         .container {
-            margin-left: 250px;
             display: flex;
-            min-height: 80vh;
+            margin-left: 250px;
+            margin-top: 70px;
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            padding: 20px;
+            background: #f4f7fa;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 90%; 
+            max-width: 1200px; 
+            min-height: calc(100vh - 70px);
+            margin: 0 auto;
         }
 
         .sidebar {
-            position:absolute;
-            left: 0%;
-            background: linear-gradient(90deg, #ffffff, #fefaf1);
-            width: 250px;
-            padding: 30px;
-            border-right: 1px solid #ddd;
-            box-shadow: 4px 0 6px rgba(0,0,0,0.1);
-            animation: slideIn 0.5s ease-out;
-            min-height: 100vh;
-        }
-
-        .sidebar a {
-            top: 0%;
+            position: fixed; 
+            top: 70px; 
             left: 0;
-            display: block;
-            padding: 15px;
-            margin: 15px 0;
-            font-size: 16px;
-            font-weight: 500;
-            background:linear-gradient(90deg, #ffffff, #d4b99b);
-            color: #333;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
+            height: calc(100vh - 70px); 
+            width: 250px; 
+            padding: 20px;
+            background: linear-gradient(90deg, #ffffff, #fefaf1); 
+            border-right: 1px solid #ddd;
+            box-shadow: 4px 0 6px rgba(0, 0, 0, 0.1);
+            overflow-y: auto; 
+            z-index: 1000; 
         }
 
-        .sidebar a:hover {
-            background:linear-gradient(90deg, #2c3e50, #4ca1af);
-            color: white;
-            transform: scale(1.05); 
-        }
+       .sidebar a {
+           display: block;
+           padding: 15px;
+           margin: 10px 0;
+           font-size: 16px;
+           font-weight: 500;
+           background: linear-gradient(90deg, #ffffff, #d4b99b);
+           color: #333;
+           text-decoration: none;
+           border-radius: 5px;
+           transition: all 0.3s ease; 
+       }
 
-        .sidebar .remove {
-            background-color: #f44336;
-        }
-
-        .sidebar .add {
-            background-color: #4CAF50;
-        }
+       .sidebar a:hover {
+           background: linear-gradient(90deg, #2c3e50, #4ca1af);
+           color: white;
+           transform: scale(1.05); 
+           box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+       }
 
         .content {
-            flex: 1;
+            flex: 3 1 700px; 
+            width: 100%;
             padding: 30px;
-            margin-left: 20px; 
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .content h2 {
@@ -135,15 +139,26 @@
             margin-bottom: 20px;
             color: #333;
         }
+        .search-bar {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 10px;
+            justify-content: flex-start; 
+            width: 100%;
+        }
+        .search-bar form {
+            display: flex; 
+            flex-wrap: nowrap;
+            align-items: center; 
+            width: 100%; 
+        }
 
         .search-input {
-            width: 100%;
+            flex: 1; 
             padding: 12px;
-            margin-bottom: 20px;
             border-radius: 5px;
             border: 1px solid #ddd;
             font-size: 16px;
-            transition: all 0.3s ease;
         }
 
         .search-input:focus {
@@ -151,13 +166,30 @@
             box-shadow: 0 0 10px rgba(75, 108, 183, 0.3);
         }
 
+        .search-bar button {
+            padding: 12px 20px; 
+            border: none;
+            border-radius: 5px;
+            background-color: #4b6cb7;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .search-bar button:hover {
+            background-color: #182848;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
+            overflow-x: auto;
         }
 
-        table th, table td {
+        .table th, .table td {
             padding: 12px;
             text-align: left;
             border: 1px solid #ddd;
@@ -170,18 +202,8 @@
 
         table tbody tr:hover {
             background-color: #f1f1f1;
-            transform: translateY(-2px); /* Efek hover baris */
+            transform: translateY(-2px);
             transition: all 0.3s ease;
-        }
-
-        /* Animasi sidebar masuk */
-        @keyframes slideIn {
-            from {
-                transform: translateX(-100%);
-            }
-            to {
-                transform: translateX(0);
-            }
         }
 
         .message {
@@ -191,15 +213,44 @@
             margin-top: 10px;
             border-radius: 5px;
             font-size: 16px;
-            animation: fadeIn 1s ease-in-out;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .container {
+                padding: 10px; 
+            }
+
+            .content {
+                padding: 10px;
+            }
+
+            table {
+                font-size: 14px; 
+            }
         }
 
+        @media screen and (max-width: 576px) {
+            .header h1, .header h2 {
+                font-size: 18px;
+            }
+
+            .search-input {
+                min-width: 150px;
+            }
+
+            table th, table td {
+                font-size: 12px;
+            }
+        }
+        
         @keyframes fadeIn {
             0% {
                 opacity: 0;
+                transform: translateY(30px);
             }
             100% {
                 opacity: 1;
+                transform: translateY(0);
             }
         }
     </style>
@@ -208,34 +259,27 @@
     <div class="header">
         <img src="<%= request.getContextPath() %>/logo" alt="InvenTrack Logo">
         <h1>Main Menu</h1>
-        <h2>halo  
-            <%= session.getAttribute("username") != null ? session.getAttribute("username") : "Guest" %> !
+        <h2>Halo  
+            <%= session.getAttribute("username") != null ? session.getAttribute("username") : "Guest" %>!
         </h2>
-        <% 
-            // Cek apakah ada pesan di session
-            String message = (String) session.getAttribute("message");
-            if (message != null) {
-        %>
-            <div class="message">
-                <strong><%= message %></strong>
-            </div>
-        <%
-            session.removeAttribute("message");
-            }
-        %>
     </div>
     
-    <div class="container">
-        <div class="sidebar">
+ <div class="container">
+    <div class="row">
+        <div class="sidebar col-md-3">
             <a href="kelolaStaff.jsp" class="button staff">Staff Management</a>
             <a href="printReport.jsp" class="button report">Print Report Inventory</a>
             <a href="bugReport.jsp" class="button report">Bug Report</a>
             <a href="LogoutServlet" class="button login">Logout</a>
         </div>
-        
         <div class="content">
-            <input type="text" placeholder="Search for item" class="search-input">
-            <h2 class="header">Item List</h2>
+            <h2 class="header-bg">List of Items</h2>
+            <div class="search-bar">
+                <form action="mainMenuOwner.jsp" method="get">
+                    <input type="text" name="search" class="search-input" placeholder="item's ID..." value="<%= request.getParameter("search") != null ? request.getParameter("search") : "" %>">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </form>
+            </div>
             <table class="table table-bordered">
                 <thead class="table-primary">
                     <tr>
@@ -245,7 +289,7 @@
                         <th>Category</th>
                         <th>Supplier</th>
                         <th>Date</th>
-                        <th>Updated by</th>
+                        <th>Updated By</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -268,5 +312,6 @@
             </table>
         </div>
     </div>
+ </div>>
 </body>
 </html>

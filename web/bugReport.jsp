@@ -37,9 +37,9 @@
             min-height: 100vh;
             padding: 20px;
             animation: fadeIn 1s ease-out;
-            background-size: cover; 
+            background-size: cover;
         }
-        
+
         body::before {
             content: "";
             position: absolute;
@@ -47,40 +47,45 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: inherit; 
-            filter: blur(3px); 
-            z-index: -1; 
+            background: inherit;
+            filter: blur(3px);
+            z-index: -1;
         }
 
         .header {
             position: fixed;
-            top: 0%;
+            top: 0;
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 15px 30px;
-            background: linear-gradient(90deg, #4b6cb7, #182848); 
+            background: linear-gradient(90deg, #4b6cb7, #182848);
             color: white;
             width: 100%;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            height: 80px; /* Menambahkan tinggi tetap */
         }
 
         .header img {
-            height: 50px;
+            height: 70px;
+            max-width: 100%; /* Menjamin gambar tetap proporsional */
         }
 
         .header h1 {
             font-size: 28px;
+            text-align: center;
+            flex: 1; /* Memberi ruang proporsional */
         }
 
         .container {
-            width: 100%;
+            width: 90%; /* Menggunakan persentase untuk responsivitas */
             max-width: 900px;
             padding: 30px;
             background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
+            margin-top: 120px; /* Memberi jarak cukup dari header */
             text-align: center;
         }
 
@@ -88,6 +93,7 @@
             font-size: 24px;
             color: #333;
             margin-bottom: 20px;
+            text-align: center;
         }
 
         .whatsapp-btn {
@@ -151,14 +157,68 @@
             }
         }
 
+        /* Responsivitas */
         @media (max-width: 768px) {
             .header {
                 flex-direction: column;
-                align-items: flex-start;
+                align-items: center; /* Header lebih responsif */
+                height: auto; /* Header fleksibel di layar kecil */
+                padding: 10px;
+            }
+
+            .header img {
+                height: 40px; /* Ukuran gambar lebih kecil di layar sempit */
+            }
+
+            .header h1 {
+                font-size: 22px; /* Ukuran teks lebih kecil di layar sempit */
+                margin-top: 10px;
             }
 
             .container {
                 padding: 20px;
+                margin-top: 150px; /* Jarak tambahan untuk header fleksibel */
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            .whatsapp-btn, .back-button {
+                font-size: 16px; /* Ukuran tombol disesuaikan */
+                padding: 10px 20px;
+            }
+
+            .number {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .header {
+                padding: 10px 15px;
+            }
+
+            .header h1 {
+                font-size: 18px;
+            }
+
+            .container {
+                padding: 15px;
+                margin-top: 160px;
+            }
+
+            h2 {
+                font-size: 18px;
+            }
+
+            .whatsapp-btn, .back-button {
+                font-size: 14px;
+                padding: 8px 16px;
+            }
+
+            .number {
+                font-size: 14px;
             }
         }
     </style>

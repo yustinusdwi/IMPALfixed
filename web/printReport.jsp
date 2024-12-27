@@ -25,42 +25,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
-        .header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 20px;
-            background: linear-gradient(90deg, #4b6cb7, #182848); /* Gradien warna menarik */
-            color: white;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        .header img {
-            height: 50px;
-        }
-
-        .header h1 {
-            font-size: 28px;
-            font-weight: 500;
-        }
-        
-        .content .header {
-            position:static;
-            text-align: center;
-            background: linear-gradient(90deg, #ffffff, #f4e8dc);
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-            display: inline-block;
-            width: auto;
-        }
-
         body {
             background-color: #f8f9fa;
-            background-size: cover; 
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
         }
-        
+
         body::before {
             content: "";
             position: absolute;
@@ -68,61 +41,64 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: inherit; 
-            filter: blur(3px); 
-            z-index: -1; 
+            background: inherit;
+            filter: blur(3px);
+            z-index: -1;
         }
 
-        @media print {
-            .no-print {
-                display: none;
-            }
-        }
-
-        .back-button {
-            background-color: #dc3545;
-            color: white;
-            padding: 12px 24px;
-            font-size: 16px;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease;
+        .header {
+            display: flex;
+            align-items: center;
             justify-content: space-between;
+            padding: 15px 20px;
+            background: linear-gradient(90deg, #4b6cb7, #182848);
+            color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+            height: 80px; /* Tinggi tetap header untuk proporsional */
         }
 
-        .back-button:hover {
-            background-color: #c82333;
-            transform: translateY(-2px);
+        .header img {
+            height: 50px;
         }
 
-        .back-button:active {
-            transform: translateY(2px);
+        .header h1 {
+            font-size: 24px;
+            font-weight: 500;
+            flex: 1;
+            text-align: center;
         }
 
         .content {
             flex: 1;
             padding: 30px;
+            margin-top: 100px; /* Memberikan jarak dari header */
+            width: 90%;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .content h2 {
             font-size: 24px;
             margin-bottom: 20px;
             color: #333;
-        }
-        
-        .container .content-h2{
-            position:static;
             text-align: center;
             background: linear-gradient(90deg, #ffffff, #f4e8dc);
             padding: 15px;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
             display: inline-block;
             width: auto;
         }
-        
+
+        .table-container {
+            overflow-x: auto; /* Mengatasi tabel yang terlalu lebar */
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
@@ -133,6 +109,7 @@
             padding: 12px;
             text-align: left;
             border: 1px solid #ddd;
+            white-space: nowrap; /* Teks tidak terpotong */
         }
 
         table th {
@@ -147,26 +124,89 @@
         }
 
         .buttons-container {
-            justify-content: space-between;
             display: flex;
+            flex-wrap: wrap; /* Tombol tetap rapi di layar kecil */
             gap: 15px;
+            justify-content: center; /* Tombol diratakan di tengah */
             margin-top: 20px;
         }
 
-        #printButton {
-            padding: 12px 20px;
-            background-color: #4CAF50;
-            color: white;
+        .back-button, #printButton {
+            padding: 12px 24px;
             font-size: 16px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .back-button {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .back-button:hover {
+            background-color: #c82333;
+            transform: translateY(-2px);
+        }
+
+        .back-button:active {
+            transform: translateY(2px);
+        }
+
+        #printButton {
+            background-color: #4CAF50;
+            color: white;
         }
 
         #printButton:hover {
             background-color: #45a049;
         }
+
+        /* Responsivitas */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 20px; /* Ukuran header lebih kecil */
+            }
+
+            .content {
+                padding: 20px;
+                margin-top: 120px; /* Menambahkan jarak untuk layar kecil */
+            }
+
+            table th, table td {
+                font-size: 14px; /* Teks tabel lebih kecil */
+            }
+
+            .back-button, #printButton {
+                font-size: 14px;
+                padding: 10px 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .header h1 {
+                font-size: 18px; /* Ukuran lebih kecil untuk layar sempit */
+            }
+
+            .content h2 {
+                font-size: 20px; /* Ukuran judul lebih kecil */
+            }
+
+            .back-button, #printButton {
+                font-size: 12px;
+                padding: 8px 16px;
+            }
+
+            table th, table td {
+                font-size: 12px;
+            }
+
+            table {
+                font-size: 12px; /* Keseluruhan ukuran tabel lebih kecil */
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -174,9 +214,16 @@
         <img src="<%= request.getContextPath() %>/logo" alt="InvenTrack Logo">
         <h1>InvenTrack - Print Inventory Management</h1>
     </div>
+
     <div class="container">
         <div class="content">
             <h2 class="content-h2">List of Items</h2>
+                <div class="search-bar">
+                <form action="printReport.jsp" method="get">
+                    <input type="text" name="search" class="search-input" placeholder="item's Category..." value="<%= request.getParameter("search") != null ? request.getParameter("search") : "" %>">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </form>
+        </div>
             <table class="table table-bordered">
                 <thead class="table-primary">
                     <tr>
