@@ -248,6 +248,9 @@
                        value="<%= request.getParameter("search") != null ? request.getParameter("search") : "" %>">
                 <button type="submit" class="btn btn-primary">Search</button>
             </form>
+            <a href="kelolaStaff.jsp">
+                <button type="submit" class="btn btn-primary">All Staffs</button>
+            </a>
         </div>
 
         <!-- Tabel Data -->

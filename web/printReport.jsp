@@ -19,7 +19,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventory Table</title>
+    <title>Print Report</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -84,19 +84,43 @@
 
         .content h2 {
             font-size: 24px;
-            margin-bottom: 20px;
+            margin: 0 auto 20px; 
             color: #333;
             text-align: center;
             background: linear-gradient(90deg, #ffffff, #f4e8dc);
-            padding: 15px;
+            padding: 15px 30px; 
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             display: inline-block;
-            width: auto;
+            text-align: center;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .search-but {
+            font-size: 18px;
+            color: #ffffff;
+            background-color: #007bff; 
+            padding: 5px 10px; 
+            border-radius: 5px; 
+            display: inline-block; 
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+            margin: 0 auto 20px; 
+        }
+        
+        .btn-custom-green {
+            background-color: #28a745; /* Hijau Bootstrap */
+            color: white; /* Warna teks */
+            border: none; /* Hilangkan border default */
+        }
+
+        .btn-custom-green:hover {
+            background-color: #218838; /* Warna saat hover */
         }
 
         .table-container {
-            overflow-x: auto; /* Mengatasi tabel yang terlalu lebar */
+            overflow-x: auto; 
         }
 
         table {
@@ -218,43 +242,43 @@
     <div class="content">
         <h2 class="content-h2">List of Items</h2>
         
-        <!-- Form pencarian: Arahkan ke SearchReportServlet -->
-        <div class="search-container">
-            <h5>Search Filter</h5>
-            <form action="SearchReportServlet" method="get">
-                <div class="row">
+        <div class="search-container modern">
+            <h5 class="search-but">Search Filter</h5>
+            <form action="SearchReportServlet" method="get" class="form-modern">
+                <div class="row g-3 align-items-end">
                     <div class="col-md-2">
-                        <label for="id_barang">ID Barang</label>
-                        <input type="text" name="id_barang" id="id_barang" 
-                               value="<%= request.getParameter("id_barang") != null ? request.getParameter("id_barang") : "" %>">
+                        <label for="id_barang" class="form-label border border-primary rounded px-2 py-1 d-block text-center">ID Barang</label>
+                        <input type="text" name="id_barang" id="id_barang" class="form-control"
+                               value="<%= request.getParameter("id_barang") != null ? request.getParameter("id_barang") : "" %>" placeholder="Enter ID">
                     </div>
                     <div class="col-md-2">
-                        <label for="nama_barang">Nama Barang</label>
-                        <input type="text" name="nama_barang" id="nama_barang"
-                               value="<%= request.getParameter("nama_barang") != null ? request.getParameter("nama_barang") : "" %>">
+                        <label for="nama_barang" class="form-label border border-primary rounded px-2 py-1 d-block text-center">Nama Barang</label>
+                        <input type="text" name="nama_barang" id="nama_barang" class="form-control"
+                               value="<%= request.getParameter("nama_barang") != null ? request.getParameter("nama_barang") : "" %>" placeholder="Enter Name">
                     </div>
                     <div class="col-md-2">
-                        <label for="kategori">Kategori</label>
-                        <input type="text" name="kategori" id="kategori"
-                               value="<%= request.getParameter("kategori") != null ? request.getParameter("kategori") : "" %>">
+                        <label for="kategori" class="form-label border border-primary rounded px-2 py-1 d-block text-center">Kategori</label>
+                        <input type="text" name="kategori" id="kategori" class="form-control"
+                               value="<%= request.getParameter("kategori") != null ? request.getParameter("kategori") : "" %>" placeholder="Category">
                     </div>
                     <div class="col-md-2">
-                        <label for="date">Tanggal (YYYY-MM-DD)</label>
-                        <input type="text" name="date" id="date"
-                               placeholder="2024-12-31"
+                        <label for="date" class="form-label border border-primary rounded px-2 py-1 d-block text-center">Tanggal</label>
+                        <input type="date" name="date" id="date" class="form-control"
                                value="<%= request.getParameter("date") != null ? request.getParameter("date") : "" %>">
                     </div>
                     <div class="col-md-2">
-                        <label for="id_karyawan_input">ID Karyawan</label>
-                        <input type="text" name="id_karyawan_input" id="id_karyawan_input"
-                               value="<%= request.getParameter("id_karyawan_input") != null ? request.getParameter("id_karyawan_input") : "" %>">
+                        <label for="id_karyawan_input" class="form-label border border-primary rounded px-2 py-1 d-block text-center">ID Karyawan</label>
+                        <input type="text" name="id_karyawan_input" id="id_karyawan_input" class="form-control"
+                               value="<%= request.getParameter("id_karyawan_input") != null ? request.getParameter("id_karyawan_input") : "" %>" placeholder="Enter Employee ID">
                     </div>
-                    <div class="col-md-2">
-                        <button type="submit" class="btn btn-primary" style="margin-top: 24px;">Search</button>
+                    <div class="col-md-2 text-center">
+                        <a href="printReport.jsp" class="btn btn-primary w-100 mb-2">All Items</a>
+                        <button type="submit" class="btn btn-custom-green w-100">Search</button>
                     </div>
                 </div>
             </form>
         </div>
+
 
         <!-- Tabel hasil data -->
         <table class="table table-bordered" id="inventoryTable">
@@ -335,8 +359,8 @@
     <script>
         document.getElementById('printButton').addEventListener('click', function() {
             const { jsPDF } = window.jspdf;
-            const doc = new jsPDF('l', 'mm', 'a4'); // landscape, mm, A4
-            const element = document.querySelector('#inventoryTable');
+            const doc = new jsPDF('l', 'mm', 'a4');
+            const element = document.querySelector('table');
 
             html2canvas(element).then((canvas) => {
                 const imgData = canvas.toDataURL('image/png');
@@ -346,7 +370,13 @@
 
                 doc.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
 
-                // Tambahkan info waktu cetak
+                const logo = document.querySelector('.header img');
+                const logoSrc = logo.src;
+                const logoHeight = 20; 
+                const logoWidth = 40;  
+                const logoYPosition = doc.internal.pageSize.height - logoHeight - 10; 
+                doc.addImage(logoSrc, 'PNG', 10, logoYPosition, logoWidth, logoHeight); 
+
                 const currentDate = new Date();
                 const dateString = currentDate.getFullYear() + '-' +
                                    String(currentDate.getMonth() + 1).padStart(2, '0') + '-' +
@@ -354,13 +384,14 @@
                                    String(currentDate.getHours()).padStart(2, '0') + ':' +
                                    String(currentDate.getMinutes()).padStart(2, '0') + ':' +
                                    String(currentDate.getSeconds()).padStart(2, '0');
-                doc.setFontSize(12); 
-                doc.setTextColor(0, 0, 0); 
-                doc.text('Printed on: ' + dateString, 10, pdfHeight + 10);
+                                   doc.setFontSize(12); 
+                doc.setTextColor(0, 0, 0);
+                const dateYPosition = logoYPosition - 5; 
+                doc.text('Printed on: ' + dateString, 10, dateYPosition); 
 
                 doc.save('List-Item.pdf');
-            });
-        });
+             });
+         });
     </script>
 
     <!-- Bootstrap JS (opsional) -->
