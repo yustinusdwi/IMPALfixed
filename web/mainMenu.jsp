@@ -284,7 +284,22 @@
                                value="<%= request.getParameter("search") != null ? request.getParameter("search") : "" %>">
                         <button type="submit" class="btn btn-primary">Search</button>
                     </form>
+                    <%
+                        // Asumsi role di session = "owner" atau "karyawan"
+                        String role = (String) session.getAttribute("role");
+                        if(role == null) {
+                            role = "karyawan"; // fallback
+                        }
+                        String backPage = "mainMenu.jsp";
+                        if("owner".equalsIgnoreCase(role)) {
+                            backPage = "mainMenuOwner.jsp";
+                        }
+                    %>
+                    <a href="<%= backPage %>">
+                        <button class="search-bar">All Items</button>
+                    </a>
                 </div>
+                
                 <table class="table table-bordered">
                     <thead class="table-primary">
                         <tr>

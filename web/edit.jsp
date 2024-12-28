@@ -21,6 +21,15 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Edit Item - InvenTrack</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .modal-xl {
+            max-width: 90%; 
+        }
+
+        .modal-content {
+            min-height: 80vh;
+        }
+    </style>
 </head>
 <body>
 <%
@@ -36,8 +45,8 @@
         ResultSet rs = db.runQuery("SELECT * FROM mengeloladatainventory WHERE id_barang = '" + id_barang + "'");
         if (rs.next()) {
 %>
-<div class="modal fade" id="editItemModal" tabindex="-1" aria-labelledby="editItemModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+<div class="modal fade" id="editItemModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editItemModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="editItemModalLabel">Edit Item</h5>
@@ -98,7 +107,10 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        var editModal = new bootstrap.Modal(document.getElementById('editItemModal'));
+        var editModal = new bootstrap.Modal(document.getElementById('editItemModal'), {
+            backdrop: 'static',
+            keyboard: false
+        });
         editModal.show();
     });
 </script>
