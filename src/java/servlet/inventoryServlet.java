@@ -53,12 +53,8 @@ public class inventoryServlet extends HttpServlet {
             // Tampilkan data berdasarkan role pengguna
             ResultSet rs;
             if ("1".equals(role)) { // Role 1: Karyawan
-                String karyawanQuery = "SELECT * FROM mengeloladatainventory WHERE id_karyawan_input = ?";
-                try (Connection conn = db.getConnection();
-                     PreparedStatement karyawanStmt = conn.prepareStatement(karyawanQuery)) {
-                    karyawanStmt.setString(1, username);
-                    rs = karyawanStmt.executeQuery();
-                }
+                String query = "SELECT * FROM mengeloladatainventory";
+                rs = db.runQuery(query);
 
                 // Set data untuk mainMenu.jsp
                 request.setAttribute("resultSet", rs);

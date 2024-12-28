@@ -265,53 +265,71 @@
     </div>
     
  <div class="container">
-    <div class="row">
-        <div class="sidebar col-md-3">
-            <a href="kelolaStaff.jsp" class="button staff">Staff Management</a>
-            <a href="printReport.jsp" class="button report">Print Report Inventory</a>
-            <a href="bugReport.jsp" class="button report">Bug Report</a>
-            <a href="LogoutServlet" class="button login">Logout</a>
-        </div>
-        <div class="content">
-            <h2 class="header-bg">List of Items</h2>
-            <div class="search-bar">
-                <form action="mainMenuOwner.jsp" method="get">
-                    <input type="text" name="search" class="search-input" placeholder="item's ID..." value="<%= request.getParameter("search") != null ? request.getParameter("search") : "" %>">
-                    <button type="submit" class="btn btn-primary">Search</button>
-                </form>
+        <div class="row">
+            <div class="sidebar col-md-3">
+                <a href="kelolaStaff.jsp" class="button staff">Staff Management</a>
+                <a href="printReport.jsp" class="button report">Print Report Inventory</a>
+                <a href="bugReport.jsp" class="button report">Bug Report</a>
+                <a href="LogoutServlet" class="button login">Logout</a>
             </div>
-            <table class="table table-bordered">
-                <thead class="table-primary">
-                    <tr>
-                        <th>ID Item</th>
-                        <th>Item Name</th>
-                        <th>Quantity</th>
-                        <th>Category</th>
-                        <th>Supplier</th>
-                        <th>Date</th>
-                        <th>Updated By</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <%
-                        jdbc db = new jdbc();
-                        ResultSet rs = db.runQuery("SELECT * FROM mengeloladatainventory");
-                        while (rs != null && rs.next()) {
-                    %>
-                    <tr>
-                        <td><%= rs.getString("id_barang") %></td>
-                        <td><%= rs.getString("nama_barang") %></td>
-                        <td><%= rs.getInt("quantity") %></td>
-                        <td><%= rs.getString("kategori") %></td>
-                        <td><%= rs.getString("supplier") %></td>
-                        <td><%= rs.getTimestamp("date") %></td>
-                        <td><%= rs.getString("id_karyawan_input") %></td>
-                    </tr>
-                    <% } %>
-                </tbody>
-            </table>
+            <div class="content">
+                <h2 class="header-bg">List of Items</h2>
+                <div class="search-bar">
+                    <!-- Arahkan ke SearchItemServlet dengan method GET -->
+                    <form action="SearchItemServlet" method="get">
+                        <!-- Isi kembali searchQuery jika ada -->
+                        <input type="text" name="search" class="search-input" 
+                               placeholder="item's ID or Name..."
+                               value="<%= request.getParameter("search") != null ? request.getParameter("search") : "" %>">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </form>
+                </div>
+
+                <table class="table table-bordered">
+                    <thead class="table-primary">
+                        <tr>
+                            <th>ID Item</th>
+                            <th>Item Name</th>
+                            <th>Quantity</th>
+                            <th>Category</th>
+                            <th>Supplier</th>
+                            <th>Date</th>
+                            <th>Updated By</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%
+                            // Ambil ResultSet yang sudah diforward oleh SearchItemServlet
+                            ResultSet rs = (ResultSet) request.getAttribute("resultSet");
+
+                            // Jika masih null, fallback dengan menampilkan semua data
+                            if (rs == null) {
+                                jdbc db = new jdbc();
+                                rs = db.runQuery("SELECT * FROM mengeloladatainventory");
+                            }
+                            int rowCount = 0;
+                        %>
+                        <tbody>
+                            <% while (rs != null && rs.next()) { %>
+                            <tr>
+                                <td><%= rs.getString("id_barang") %></td>
+                                <td><%= rs.getString("nama_barang") %></td>
+                                <td><%= rs.getInt("quantity") %></td>
+                                <td><%= rs.getString("kategori") %></td>
+                                <td><%= rs.getString("supplier") %></td>
+                                <td><%= rs.getTimestamp("date") %></td>
+                                <td><%= rs.getString("id_karyawan_input") %></td>
+                            </tr>
+                            <% rowCount++; } %>
+                            <% if (rowCount == 0) { %>
+                            <tr>
+                                <td colspan="8">No data available.</td>
+                            </tr>
+                            <% } %>
+                        </tbody>
+                </table>
+            </div>
         </div>
     </div>
- </div>>
 </body>
 </html>

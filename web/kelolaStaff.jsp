@@ -235,13 +235,22 @@
     
     <div class="container mt-4">
         <h2 class="text-center mb-4 title-bg">List of Users</h2>
+        
+        <!-- Link Tambah User -->
         <a href="addStaff.jsp" class="btn btn-primary mb-3">Add New User</a>
+
+        <!-- Form Search -> Arahkan ke SearchStaffServlet dengan action=search -->
         <div class="search-bar">
-                <form action="kelolaStaff.jsp" method="get">
-                    <input type="text" name="search" class="search-input" placeholder="user's name..." value="<%= request.getParameter("search") != null ? request.getParameter("search") : "" %>">
-                    <button type="submit" class="btn btn-primary">Search</button>
-                </form>
+            <form action="SearchStaffServlet" method="get">
+                <input type="hidden" name="action" value="search">
+                <input type="text" name="search" class="search-input" 
+                       placeholder="user's name..."
+                       value="<%= request.getParameter("search") != null ? request.getParameter("search") : "" %>">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </form>
         </div>
+
+        <!-- Tabel Data -->
         <table class="table table-bordered">
             <thead class="table-primary">
                 <tr>
@@ -257,9 +266,16 @@
             </thead>
             <tbody>
                 <%
-                    jdbc db = new jdbc();
-                    ResultSet rs = db.runQuery("SELECT * FROM pengguna");
-                    while (rs != null && rs.next()) {
+                    // Di sini kita ambil resultSet dari servlet
+                    ResultSet rs = (ResultSet) request.getAttribute("resultSet");
+                    if (rs == null) {
+                        jdbc db = new jdbc();
+                        rs = db.runQuery("SELECT * FROM pengguna");
+                    }
+                    int rowCount = 0;
+                    if(rs != null) {
+                        while (rs.next()) {
+                        rowCount++;
                 %>
                 <tr>
                     <td><%= rs.getString("id_pengguna") %></td>
@@ -270,12 +286,14 @@
                     <td><%= rs.getString("no_telp") %></td>
                     <td><%= rs.getInt("role") %></td>
                     <td>
+                        <!-- Edit -->
                         <form action="editStaff.jsp" method="get" style="display:inline;">
                             <input type="hidden" name="action" value="edit">
                             <input type="hidden" name="id_pengguna" value="<%= rs.getString("id_pengguna") %>">
                             <button type="submit" class="btn btn-warning btn-sm">Edit</button>
                         </form>
 
+                        <!-- Delete -->
                         <form action="kelolaStaffServlet" method="get" style="display:inline;">
                             <input type="hidden" name="action" value="delete">
                             <input type="hidden" name="id_pengguna" value="<%= rs.getString("id_pengguna") %>">
@@ -286,10 +304,32 @@
                         </form>
                     </td>
                 </tr>
-                <% } %>
+                <%
+                        } // end while
+                    }     if (rowCount == 0) {
+                %>
+                    <tr>
+                        <td colspan="8">No data available.</td>
+                    </tr>
+                <%
+                    }
+                %>
             </tbody>
         </table>
-        <a href="<%= session.getAttribute("role").equals("owner") ? "mainMenuOwner.jsp" : "mainMenu.jsp" %>">
+
+        <!-- Tombol Back to Main Menu -->
+        <%
+            // Asumsi role di session = "owner" atau "karyawan"
+            String role = (String) session.getAttribute("role");
+            if(role == null) {
+                role = "karyawan"; // fallback
+            }
+            String backPage = "mainMenu.jsp";
+            if("owner".equalsIgnoreCase(role)) {
+                backPage = "mainMenuOwner.jsp";
+            }
+        %>
+        <a href="<%= backPage %>">
             <button class="back-button">Back to Main Menu</button>
         </a>
     </div>

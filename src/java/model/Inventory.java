@@ -10,19 +10,23 @@ package model;
  * @author nbpav
  */
 
+import java.sql.Timestamp;
 
 public class Inventory {
-    private int id;
+    private String id;
     private String name;
     private int quantity;
     private String category;
+    private String supplier;
+    private Timestamp date;
+    private String updatedBy;
 
-    // Getters and Setters
-    public int getId() {
+    // Getters and setters
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -48,5 +52,29 @@ public class Inventory {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public String getSupplier() {
+        return supplier;
+    }
+
+    public void setSupplier(String supplier) {
+        this.supplier = supplier;
+    }
+
+    public Timestamp getDate() {
+        return date;
+    }
+
+    public void setDate(Timestamp date) {
+        this.date = date;
+    }
+
+    public String getUpdatedBy() {
+        return updatedBy;
+    }
+
+    public void setUpdatedBy(String updatedBy) {
+        this.updatedBy = updatedBy;
     }
 }
