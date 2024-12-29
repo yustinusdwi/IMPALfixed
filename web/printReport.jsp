@@ -247,27 +247,27 @@
             <form action="SearchReportServlet" method="get" class="form-modern">
                 <div class="row g-3 align-items-end">
                     <div class="col-md-2">
-                        <label for="id_barang" class="form-label border border-primary rounded px-2 py-1 d-block text-center">ID Barang</label>
+                        <label for="id_barang" class="form-label border border-primary rounded px-2 py-1 d-block text-center">ID</label>
                         <input type="text" name="id_barang" id="id_barang" class="form-control"
                                value="<%= request.getParameter("id_barang") != null ? request.getParameter("id_barang") : "" %>" placeholder="Enter ID">
                     </div>
                     <div class="col-md-2">
-                        <label for="nama_barang" class="form-label border border-primary rounded px-2 py-1 d-block text-center">Nama Barang</label>
+                        <label for="nama_barang" class="form-label border border-primary rounded px-2 py-1 d-block text-center">Name</label>
                         <input type="text" name="nama_barang" id="nama_barang" class="form-control"
                                value="<%= request.getParameter("nama_barang") != null ? request.getParameter("nama_barang") : "" %>" placeholder="Enter Name">
                     </div>
                     <div class="col-md-2">
-                        <label for="kategori" class="form-label border border-primary rounded px-2 py-1 d-block text-center">Kategori</label>
+                        <label for="kategori" class="form-label border border-primary rounded px-2 py-1 d-block text-center">Category</label>
                         <input type="text" name="kategori" id="kategori" class="form-control"
-                               value="<%= request.getParameter("kategori") != null ? request.getParameter("kategori") : "" %>" placeholder="Category">
+                               value="<%= request.getParameter("kategori") != null ? request.getParameter("kategori") : "" %>" placeholder="Enter Category">
                     </div>
                     <div class="col-md-2">
-                        <label for="date" class="form-label border border-primary rounded px-2 py-1 d-block text-center">Tanggal</label>
+                        <label for="date" class="form-label border border-primary rounded px-2 py-1 d-block text-center">Date</label>
                         <input type="date" name="date" id="date" class="form-control"
                                value="<%= request.getParameter("date") != null ? request.getParameter("date") : "" %>">
                     </div>
                     <div class="col-md-2">
-                        <label for="id_karyawan_input" class="form-label border border-primary rounded px-2 py-1 d-block text-center">ID Karyawan</label>
+                        <label for="id_karyawan_input" class="form-label border border-primary rounded px-2 py-1 d-block text-center">User's ID</label>
                         <input type="text" name="id_karyawan_input" id="id_karyawan_input" class="form-control"
                                value="<%= request.getParameter("id_karyawan_input") != null ? request.getParameter("id_karyawan_input") : "" %>" placeholder="Enter Employee ID">
                     </div>
@@ -284,8 +284,8 @@
         <table class="table table-bordered" id="inventoryTable">
             <thead class="table-primary">
                 <tr>
-                    <th>ID Item</th>
-                    <th>Item Name</th>
+                    <th>Item's ID</th>
+                    <th>Item'S Name</th>
                     <th>Quantity</th>
                     <th>Category</th>
                     <th>Supplier</th>

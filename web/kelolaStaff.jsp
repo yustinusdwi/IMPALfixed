@@ -257,12 +257,11 @@
         <table class="table table-bordered">
             <thead class="table-primary">
                 <tr>
-                    <th>ID Pengguna</th>
+                    <th>ID</th>
                     <th>Username</th>
-                    <th>Password</th>
                     <th>Address</th>
-                    <th>Jenis Kelamin</th>
-                    <th>No Telp</th>
+                    <th>Gender</th>
+                    <th>Phone Number</th>
                     <th>Role</th>
                     <th>Action</th>
                 </tr>
@@ -283,7 +282,6 @@
                 <tr>
                     <td><%= rs.getString("id_pengguna") %></td>
                     <td><%= rs.getString("username") %></td>
-                    <td><%= rs.getString("password") %></td>
                     <td><%= rs.getString("address") %></td>
                     <td><%= rs.getString("jenis_kelamin") %></td>
                     <td><%= rs.getString("no_telp") %></td>
