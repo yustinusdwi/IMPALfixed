@@ -2,6 +2,21 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/user/Documents/Tubes%20Impal/impler%20kontol%20terbaru/implernopler/src/java/JDBC/jdbc.java</file>
+            <file>file:/C:/Users/user/Documents/Tubes%20Impal/impler%20kontol%20terbaru/implernopler/web/mainMenuOwner.jsp</file>
+            <file>file:/C:/Users/user/Documents/Tubes%20Impal/impler%20kontol%20terbaru/implernopler/src/java/servlet/SearchStaffServlet.java</file>
+            <file>file:/C:/Users/user/Documents/Tubes%20Impal/impler%20kontol%20terbaru/implernopler/src/java/servlet/ChangepassServlet.java</file>
+            <file>file:/C:/Users/user/Documents/Tubes%20Impal/impler%20kontol%20terbaru/implernopler/web/mainMenu.jsp</file>
+            <file>file:/C:/Users/user/Documents/Tubes%20Impal/impler%20kontol%20terbaru/implernopler/web/LOGINpage.jsp</file>
+            <file>file:/C:/Users/user/Documents/Tubes%20Impal/impler%20kontol%20terbaru/implernopler/web/printReport.jsp</file>
+            <file>file:/C:/Users/user/Documents/Tubes%20Impal/impler%20kontol%20terbaru/implernopler/src/java/servlet/SearchReportServlet.java</file>
+            <file>file:/C:/Users/user/Documents/Tubes%20Impal/impler%20kontol%20terbaru/implernopler/web/kelolaStaff.jsp</file>
+            <file>file:/C:/Users/user/Documents/Tubes%20Impal/impler%20kontol%20terbaru/implernopler/web/editStaff.jsp</file>
+            <file>file:/C:/Users/user/Documents/Tubes%20Impal/impler%20kontol%20terbaru/implernopler/src/java/servlet/inventoryServlet.java</file>
+            <file>file:/C:/Users/user/Documents/Tubes%20Impal/impler%20kontol%20terbaru/implernopler/src/java/servlet/SearchItemServlet.java</file>
+            <file>file:/C:/Users/user/Documents/Tubes%20Impal/impler%20kontol%20terbaru/implernopler/web/changePass.jsp</file>
+            <file>file:/C:/Users/user/Documents/Tubes%20Impal/impler%20kontol%20terbaru/implernopler/src/java/servlet/LoginServlet.java</file>
+        </group>
     </open-files>
 </project-private>

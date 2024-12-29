@@ -58,8 +58,12 @@
                         <input type="text" class="form-control" id="editUsername" name="username" value="<%= rs.getString("username") %>">
                     </div>
                     <div class="mb-3">
-                        <label for="editPassword" class="form-label">Password</label>
-                        <input type="text" class="form-control" id="editPassword" name="password" value="<%= rs.getString("password") %>">
+                        <label for="editPassword" class="form-label">Password Baru</label>
+                        <input type="password" class="form-control" id="editPassword" name="password" placeholder="Masukkan password baru">
+                    </div>
+                    <div class="mb-3">
+                        <label for="confirmPassword" class="form-label">Konfirmasi Password Baru</label>
+                        <input type="password" class="form-control" id="confirmPassword" name="confirm_password" placeholder="Konfirmasi password baru">
                     </div>
                     <div class="mb-3">
                         <label for="editAddress" class="form-label">Address</label>

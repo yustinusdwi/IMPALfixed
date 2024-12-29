@@ -136,9 +136,13 @@ public class kelolaStaffServlet extends HttpServlet {
                 }
 
                 int roleId = Integer.parseInt(role_name);
-
+                String penggunaQuery;
+                if (password != null && !password.isEmpty()) {
+                    penggunaQuery = "UPDATE Pengguna SET username = ?, password = ?, address = ?, jenis_kelamin = ?, no_telp = ?, role = ? WHERE id_pengguna = ?";
+                } else {
+                    penggunaQuery = "UPDATE Pengguna SET username = ?, address = ?, jenis_kelamin = ?, no_telp = ?, role = ? WHERE id_pengguna = ?";
+                }
                 // Update tabel Pengguna
-                String penggunaQuery = "UPDATE Pengguna SET username = ?, password = ?, address = ?, jenis_kelamin = ?, no_telp = ?, role = ? WHERE id_pengguna = ?";
                 try (PreparedStatement stmt = conn.prepareStatement(penggunaQuery)) {
                     stmt.setString(1, username);
                     stmt.setString(2, password);
