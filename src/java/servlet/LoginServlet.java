@@ -26,10 +26,10 @@ public class LoginServlet extends HttpServlet {
 
         try (Connection conn = db.getConnection()) {
             // Query untuk memvalidasi username dan password
-            String query = "SELECT Role.role_name AS role " +
-                           "FROM Pengguna " +
-                           "JOIN Role ON Pengguna.role = Role.id " +
-                           "WHERE Pengguna.username = ? AND Pengguna.password = ?";
+            String query = "SELECT role.role_name AS role " +
+                           "FROM pengguna " +
+                           "JOIN role ON pengguna.role = role.id " +
+                           "WHERE pengguna.username = ? AND pengguna.password = ?";
             PreparedStatement stmt = conn.prepareStatement(query);
             if (conn == null) {
                 System.out.println("Failed to establish a database connection.");
@@ -69,7 +69,8 @@ public class LoginServlet extends HttpServlet {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            response.sendRedirect("LOGINpage.jsp?error=An error occurred. Please try again.");
+            System.out.println(e);
+            response.sendRedirect("LOGINpage.jsp?error="+e);
         } finally {
             db.disconnect();
         }

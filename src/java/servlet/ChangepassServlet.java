@@ -46,7 +46,7 @@ public class ChangepassServlet extends HttpServlet {
 
         try {
             // Verifikasi username dan password lama
-            String checkPasswordQuery = "SELECT password FROM Pengguna WHERE username = '" + username + "'";
+            String checkPasswordQuery = "SELECT password FROM pengguna WHERE username = '" + username + "'";
             ResultSet rs = db.runQuery(checkPasswordQuery);
 
             if (rs.next()) {

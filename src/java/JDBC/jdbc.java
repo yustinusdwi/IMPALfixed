@@ -25,10 +25,10 @@ public class jdbc {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            String url = "jdbc:mysql://localhost:3306/inventorymanagement";
-            String user = "root";
-            String password = "";
-
+//            String url = "jdbc:mysql://localhost:3307/inventorymanagement";
+            String url = "jdbc:mysql://mysql-11e7911d-yustinus134-1596.e.aivencloud.com:16286/defaultdb";
+            String user = "avnadmin";
+            String password = "AVNS_gm-WtZCbSmaeGPAKus4";
             con = DriverManager.getConnection(url, user, password);
             stmt = con.createStatement();
             isConnected = true;
@@ -69,11 +69,13 @@ public class jdbc {
                 message = "Statement is null. Query cannot be executed.";
                 System.err.println(message);
             }
-        } catch (Exception e) {
-            message = e.getMessage();
+        } catch (SQLException e) {
+            message = "Error executing query: " + e.getMessage();
+            System.err.println(message);
         }
         return rs;
     }
+
 
     public int runUpdate(String query) {
         int result = 0;
