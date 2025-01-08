@@ -268,7 +268,6 @@
         <div class="row">
             <div class="sidebar col-md-3">
                 <a href="addItems.jsp" class="add">Add Items</a>
-                <a href="kelolaStaff.jsp" class="button staff">Staff Management</a>
                 <a href="printReport.jsp" class="button report">Print Report Inventory</a>
                 <a href="bugReport.jsp" class="button report">Bug Report</a>
                 <a href="LogoutServlet" class="button login">Logout</a>

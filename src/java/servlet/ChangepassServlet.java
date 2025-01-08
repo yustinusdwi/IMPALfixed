@@ -58,7 +58,7 @@ public class ChangepassServlet extends HttpServlet {
                     errorMessage = "New password and confirmation do not match.";
                 } else {
                     // Update password di database
-                    String updatePasswordQuery = "UPDATE Pengguna SET password = '" + newPassword + "' WHERE username = '" + username + "'";
+                    String updatePasswordQuery = "UPDATE pengguna SET password = '" + newPassword + "' WHERE username = '" + username + "'";
                     int rowsUpdated = db.runUpdate(updatePasswordQuery);
 
                     if (rowsUpdated > 0) {
