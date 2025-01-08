@@ -7,9 +7,9 @@ link product : https://impaltubes-widi-ekgubeg5fgg0f6h0.canadacentral-01.azurewe
 <br>
 shorten link's product : https://tinyurl.com/InvenTrack
 <br>
-using java web app with ant, JDK 8, Database using MySQL, JSP (FrontEnd), Servlet, Model and JDBC (Backend)
+using java web app with ant, JDK 8, JSP (FrontEnd), Servlet, Model and JDBC (Backend)
 <br>
-database using aiven, table plus and phpmyadmin
+database using MySQL, aiven, table plus and phpmyadmin
 <br>
 deployment using Ms. Azure
 
